@@ -2,10 +2,9 @@ import React from 'react';
 import { View, Text, Image, Linking } from 'react-native';
 import {Card, CardSingle, Input, ClickButton} from './common';
 
-const MusicInfo = (props) => {
-    
+const RecentMusicInfo = (props) => {
+
     return (
-    
         <Card>
             <CardSingle>
                 <View style = {styles.thumbnailHoldStyle}>
@@ -15,17 +14,16 @@ const MusicInfo = (props) => {
                 </View>
         
                 <View style = {styles.cardSingleStyle}>
-                    <Text style = {styles.cardTextStyle}>#{props.single['@attr'].rank}</Text>
                     <Text style = {styles.cardTextStyle}>{props.single.name}</Text>
-                    <Text>{props.single.artist.name}</Text>
-                    <Text>Play Count: {props.single.playcount}</Text>
+                    <Text>{props.single.artist['#text']}</Text>
+                    <Text>{props.single.album["#text"]}</Text>
                 </View>
                 
             </CardSingle>
         
             
             <CardSingle>
-                <ClickButton onPress={() => Linking.openURL(`https://www.youtube.com/results?search_query=${props.single.name} ${props.single.artist.name}`)}>
+                <ClickButton onPress={() => Linking.openURL(`https://www.youtube.com/results?search_query=${props.single.name} ${props.single.artist['#text']}`)}>
                     Search on YouTube
                 </ClickButton>
             </CardSingle>
@@ -71,4 +69,4 @@ const styles = {
 }
 
 
-export default MusicInfo;
+export default RecentMusicInfo;

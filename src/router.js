@@ -2,6 +2,7 @@ import React from 'react';
 import {Scene, Router, Actions} from 'react-native-router-flux';
 import UserEnter from './components/userEnter';
 import MusicShow from './components/musicShow';
+import RecentMusic from './components/recentMusic';
 
 const RouterComponent = () => {
 
@@ -9,15 +10,17 @@ const RouterComponent = () => {
         <Router sceneStyle = {{paddingTop: 60}}>
             <Scene key = "userFind">
                 <Scene key = "search" component = {UserEnter} title = "last.FM searcher" initial />
-            </Scene>
-        
-            <Scene key = "musicShow">
                 <Scene
-                    key = "listMusic"
+                    key = "musicShow"
                     component = {MusicShow}
-                    title = "Top 50 Artists/Songs"
+                    title = "Top 50 Songs/Tracks"
+                    onRight = {() => Actions.recentMusic()}
+                    rightTitle = "Recents"
                 />
+                <Scene key = "recentMusic" component = {RecentMusic} title = "Recent Tracks" />
             </Scene>
+
+            
         </Router>
 
     );

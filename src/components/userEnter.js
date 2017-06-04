@@ -61,8 +61,31 @@ class UserEnter extends React.Component {
         
     }
     
+    renderGuide() {
+        
+        if(this.props.error === ''){
+            
+            return(
+                <CardSingle>
+                    <TouchableOpacity onPress = {this.handleClickText}>
+                        <View>
+                            <Text style = {styles.errorNoticeStyle}>
+                                This is an application that works with the lastFM API to find a certain user's' music history. Tap here to see the lastFM website!
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
+                </CardSingle>
+            )
+        }
+        
+    }
+    
     handleClick() {
         Linking.openURL("https://www.last.fm/join");
+    }
+    
+    handleClickText() {
+        Linking.openURL("https://www.last.fm/");
     }
     
     
@@ -71,19 +94,18 @@ class UserEnter extends React.Component {
         
         return (
             <Card>
-            
                 <CardSingle>
-                    <Image 
-                        style={styles.titlePicStyle}
-                        source={{uri: 'https://transientwriting.files.wordpress.com/2008/10/last-fm-logo.png'}}
-                        resizeMode =  {Image.resizeMode.center}
-                    />
+                            <Image 
+                                style={styles.titlePicStyle}
+                                source={{uri: 'https://transientwriting.files.wordpress.com/2008/10/last-fm-logo.png'}}
+                                resizeMode =  {Image.resizeMode.center}
+                            />
                 </CardSingle>
             
                 <CardSingle>
                     <Input
                         desc = "lastFM username"
-                        hold = "kasuka17"
+                        hold = "for example: kasuka17"
                         onChangeText = {this.onUserNameChange.bind(this)}
                         value = {this.props.userTerm}
                     />
@@ -99,9 +121,11 @@ class UserEnter extends React.Component {
                     </Text>
                     
                 </CardSingle>
-
+                
+                {this.renderGuide()}
                 {this.renderNotice()}
                 {this.renderTips()}
+                
                 
             </Card>
         

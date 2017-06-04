@@ -39,8 +39,6 @@ export const searchLastFM = (text) => {
         axios.get('http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=' + text + '&api_key=c9557c25277d1ab9c742a7b91b6609bf&format=json')
             .then(response => {
                 
-                console.log(response);
-                console.log(response.data.error);
                 if(response.data.error === 6){
                     
                     searchFail(dispatch);
